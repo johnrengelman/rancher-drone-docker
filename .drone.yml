@@ -8,6 +8,9 @@ publish:
     app:
       image: docker
       repo: johnrengelman/ratpack-demo
+      username: $$DOCKER_USERNAME
+      password: $$DOCKER_PASSWORD
+      email: $$DOCKER_EMAIL
       tag: "$${COMMIT:0:7}"
       when:
         branch: master
