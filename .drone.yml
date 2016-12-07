@@ -1,0 +1,5 @@
+build:
+  app:
+    image: openjdk:8
+    commands:
+      - ./gradlew build
