@@ -5,13 +5,24 @@ build:
       - ./gradlew build
       
 publish:
-    app:
-      image: docker
-      repo: johnrengelman/ratpack-demo
-      username: $$DOCKER_USERNAME
-      password: $$DOCKER_PASSWORD
-      email: $$DOCKER_EMAIL
-      tag: "$${COMMIT:0:7}"
-      when:
-        branch: master
-        event: push
+  app:
+    image: docker
+    repo: johnrengelman/ratpack-demo
+    username: $$DOCKER_USERNAME
+    password: $$DOCKER_PASSWORD
+    email: $$DOCKER_EMAIL
+    tag: "$${COMMIT:0:7}"
+    when:
+      branch: master
+      event: push
+        
+deploy:
+  app:
+    image: rancher
+    url: $$RANCHER_URL
+    access_key: $$RANCHER_ACCESS_KEY
+    secret_key: $$RANCHER_SECRET_KEY
+    service: demo-app/ratpack-demo
+    docker_image: "johnrengelman/ratpack-demo:$${COMMIT:0:7}"
+    confirm: true
+    
