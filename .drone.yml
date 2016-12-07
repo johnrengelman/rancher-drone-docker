@@ -3,3 +3,12 @@ build:
     image: openjdk:8
     commands:
       - ./gradlew build
+      
+publish:
+    app:
+      image: docker
+      repo: johnrengelman/ratpack-demo
+      tag: "$${COMMIT:0:7}"
+      when:
+        branch: master
+        event: push
